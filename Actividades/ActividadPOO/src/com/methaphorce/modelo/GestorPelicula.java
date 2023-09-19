@@ -3,7 +3,6 @@ import com.methaphorce.modelo.Pelicula;
 import java.util.ArrayList;
 
 public class GestorPelicula {
-    // ArrayList<String> cars = new ArrayList<String>();
     //Array list donde se almacenan las películas;
     private ArrayList<Pelicula> gestorPelicula = new ArrayList<Pelicula>();
 
@@ -16,6 +15,7 @@ public class GestorPelicula {
             int id = gestorPelicula.size() + 1;
             gestorPelicula.add(new Pelicula(id, name));
         }
+        System.out.println("Película agregada con exito");
     }
     //Agregar pelicula que no esta disponible
     public void agregarPelicula (String name, boolean isAvailable){
@@ -25,15 +25,28 @@ public class GestorPelicula {
             int id = gestorPelicula.size() + 1;
             gestorPelicula.add(new Pelicula(id, name,isAvailable));
         }
+        System.out.println("Película agregada con exito");
     }
 
     public void eliminarPelicula (int id){
         int size = gestorPelicula.size();
-        if (size > 0 || (size-1) <id){
+        if (size > 0 && (size+1) > id && id>0){
             gestorPelicula.remove(id-1);
+            System.out.println("Película Eliminada con éxito");
+            //Ciclo para ajustar el id de la película a partir de la eliminación
+            for (int i = id-1; i<(size-1); i++ ){
+                gestorPelicula.get(i).setId(i+1);
+            }
         } else {
             System.out.println("Indice no encontrado, no es posible realizar la acción");
         }
+    }
+    // Mostrar peliculas
+    @Override
+    public String toString() {
+        return "GestorPelicula{" +
+                "gestorPelicula=" + gestorPelicula +
+                '}';
     }
 
     //Métodos para realizar algunos pruebas
@@ -43,10 +56,5 @@ public class GestorPelicula {
         System.out.println("El primer elemento es " + gestorPelicula.get(0));
         System.out.println("El último elemento es " + gestorPelicula.get(gestorPelicula.size()-1));
     }
-    @Override
-    public String toString() {
-        return "GestorPelicula{" +
-                "gestorPelicula=" + gestorPelicula +
-                '}';
-    }
+
 }

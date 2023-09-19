@@ -19,7 +19,12 @@ public class Main {
         pruebaGestor.agregarPelicula("Rambo");
         pruebaGestor.printIndex();
         System.out.println(pruebaGestor);
-        pruebaGestor.eliminarPelicula(3);
+        pruebaGestor.eliminarPelicula(4);
+        pruebaGestor.eliminarPelicula(5);
+        pruebaGestor.eliminarPelicula(-1);
+        pruebaGestor.eliminarPelicula(0);
+        System.out.println(pruebaGestor);
+        pruebaGestor.eliminarPelicula(1);
         System.out.println(pruebaGestor);
     }
 }
