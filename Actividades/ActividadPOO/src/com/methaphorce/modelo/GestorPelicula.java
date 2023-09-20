@@ -41,6 +41,14 @@ public class GestorPelicula {
             System.out.println("Indice no encontrado, no es posible realizar la acción");
         }
     }
+
+    public void setPeliculaDisponible(int id){
+        gestorPelicula.get(id-1).setAvailable(true);
+    }
+
+    public void setPeliculaNoDisponible(int id){
+        gestorPelicula.get(id-1).setAvailable(false);
+    }
     // Mostrar peliculas
     @Override
     public String toString() {

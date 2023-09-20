@@ -48,6 +48,12 @@ public class Pelicula {
 
     @Override
     public String toString() {
+        if (isAvailable){
+            String disponibilidad = "Disponible";
+        } else {
+            String disponibilidad = "No Disponible";
+        }
+        System.out.println(disponibilidad);
         return "Pelicula{" +
                 "id=" + id +
                 ", name='" + name + '\'' +
