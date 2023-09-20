@@ -6,25 +6,27 @@ import com.methaphorce.modelo.Pelicula;
 public class Main {
 
     public static void main(String[] args) {
-        Pelicula prueba = new Pelicula(1, "Duro de Matar");
-        Pelicula pruebaFalse = new Pelicula(2,"Rapido y Furioso", false);
-        System.out.println(prueba);
-        System.out.println(pruebaFalse);
-
-
+        //Creando una instancia de Gestor de película
         GestorPelicula pruebaGestor = new GestorPelicula();
+
+        //Agregando películas
         pruebaGestor.agregarPelicula("Duro de matar");
         pruebaGestor.agregarPelicula("Rapidos y Furiosos");
         pruebaGestor.agregarPelicula("Le era del hielo", false);
         pruebaGestor.agregarPelicula("Rambo");
-        pruebaGestor.printIndex();
-        System.out.println(pruebaGestor);
-        pruebaGestor.eliminarPelicula(4);
-        pruebaGestor.eliminarPelicula(5);
-        pruebaGestor.eliminarPelicula(-1);
-        pruebaGestor.eliminarPelicula(0);
-        System.out.println(pruebaGestor);
-        pruebaGestor.eliminarPelicula(1);
-        System.out.println(pruebaGestor);
+
+        // Imprimiendo películas
+        pruebaGestor.printListaPeliculas();
+        pruebaGestor.mostrarDisponibles();
+        pruebaGestor.mostrarNoDisponibles();
+
+        //ELIMINANDO PELICULA
+        pruebaGestor.eliminarPelicula(1); // SE ELIMINA PELICULA CON ID = 1
+
+        //SET DE NUEVOS ESTADOS DE DISPONIBILIDAD
+        pruebaGestor.setPeliculaDisponible(1);
+        pruebaGestor.setPeliculaNoDisponible(2);
+        pruebaGestor.printListaPeliculas();
+
     }
 }

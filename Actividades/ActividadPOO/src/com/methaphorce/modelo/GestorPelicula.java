@@ -1,5 +1,5 @@
 package com.methaphorce.modelo;
-import com.methaphorce.modelo.Pelicula;
+
 import java.util.ArrayList;
 
 public class GestorPelicula {
@@ -17,7 +17,7 @@ public class GestorPelicula {
         }
         System.out.println("Película agregada con exito");
     }
-    //Agregar pelicula que no esta disponible
+    //Agregar pelicula donde su estado inicial es no disponible
     public void agregarPelicula (String name, boolean isAvailable){
         if(gestorPelicula.size()< 1){
             gestorPelicula.add(new Pelicula(1,name,isAvailable));
@@ -28,6 +28,7 @@ public class GestorPelicula {
         System.out.println("Película agregada con exito");
     }
 
+    //Eliminar película
     public void eliminarPelicula (int id){
         int size = gestorPelicula.size();
         if (size > 0 && (size+1) > id && id>0){
@@ -44,25 +45,52 @@ public class GestorPelicula {
 
     public void setPeliculaDisponible(int id){
         gestorPelicula.get(id-1).setAvailable(true);
+        System.out.println("Cambio de disponibilidad: Disponible");
     }
 
     public void setPeliculaNoDisponible(int id){
         gestorPelicula.get(id-1).setAvailable(false);
+        System.out.println("Cambio de disponibilidad: No Disponible");
     }
     // Mostrar peliculas
-    @Override
-    public String toString() {
-        return "GestorPelicula{" +
-                "gestorPelicula=" + gestorPelicula +
-                '}';
+
+    public void printListaPeliculas (){
+        System.out.println("-".repeat(60));
+        System.out.println("LISTA DE PELICULAS COMPLETA");
+        System.out.printf("%5s %20s %20s%n", "ID", "Nombre","Disponibilidad" );
+        System.out.println("-".repeat(60));
+        int size = gestorPelicula.size();
+        for (int i = 0; i<size;i++){
+            gestorPelicula.get(i).printPelicula();
+        }
+
     }
 
-    //Métodos para realizar algunos pruebas
-    public void printIndex(){
-        System.out.println("El indice es " + gestorPelicula.isEmpty());
-        System.out.println("El tamño del arreglo es " + gestorPelicula.size());
-        System.out.println("El primer elemento es " + gestorPelicula.get(0));
-        System.out.println("El último elemento es " + gestorPelicula.get(gestorPelicula.size()-1));
+
+    //Mostrar películas disponibles
+    public void mostrarDisponibles(){
+        int size = gestorPelicula.size();
+        System.out.println("-".repeat(60));
+        System.out.println("LISTA DE PELICULAS DISPONIBLES");
+        System.out.println("-".repeat(60));
+        for (int i = 0; i<size;i++){
+            if (gestorPelicula.get(i).isAvailable()){
+                gestorPelicula.get(i).printPelicula();
+            }
+        }
     }
+    //Mostrar películas no disponibles
+    public void mostrarNoDisponibles(){
+        int size = gestorPelicula.size();
+        System.out.println("-".repeat(60));
+        System.out.println("LISTA DE PELICULAS NO DISPONIBLES");
+        System.out.println("-".repeat(60));
+        for (int i = 0; i<size;i++){
+            if (!(gestorPelicula.get(i).isAvailable())){
+                gestorPelicula.get(i).printPelicula();
+            }
+        }
+    }
+
 
 }

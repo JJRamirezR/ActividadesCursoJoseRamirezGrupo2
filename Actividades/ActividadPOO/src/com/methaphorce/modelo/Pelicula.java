@@ -46,18 +46,9 @@ public class Pelicula {
         isAvailable = available;
     }
 
-    @Override
-    public String toString() {
-        if (isAvailable){
-            String disponibilidad = "Disponible";
-        } else {
-            String disponibilidad = "No Disponible";
-        }
-        System.out.println(disponibilidad);
-        return "Pelicula{" +
-                "id=" + id +
-                ", name='" + name + '\'' +
-                ", isAvailable=" + isAvailable +
-                '}';
+    public void printPelicula (){
+        System.out.printf("%5d %20s %20s%n", id, name, (isAvailable)? "Disponible":"No Disponible" );
+
     }
+
 }
