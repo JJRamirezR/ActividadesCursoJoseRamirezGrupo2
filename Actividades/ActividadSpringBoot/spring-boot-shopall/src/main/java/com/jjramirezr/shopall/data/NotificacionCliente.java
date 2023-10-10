@@ -16,7 +16,9 @@ public class NotificacionCliente {
     @Column(name = "idNotificacion", nullable = false)
     private Integer id;
 
-    private Integer idCliente;
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "idCliente")
+    private Cliente cliente;
 
     @Column(name = "Notificacion", nullable = false)
     private String Notificacion;

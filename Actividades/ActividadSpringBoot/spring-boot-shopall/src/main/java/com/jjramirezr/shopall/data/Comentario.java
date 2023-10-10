@@ -16,11 +16,16 @@ public class Comentario {
     @Column(name = "idComentario", nullable = false)
     private Integer id;
 
-    private Integer idCliente;
-    private Integer idInventario;
+    @ManyToOne
+    @JoinColumn(name = "idCliente",nullable = false)
+    private Cliente cliente;
 
-    @Column(name = "Notificacion", nullable = false)
-    private String Notificacion;
+    @ManyToOne
+    @JoinColumn(name = "idInventario",nullable = false)
+    private Inventario inventario;
+
+    @Column(name = "Comentario", nullable = false)
+    private String comentario;
 
     @Column(name = "Fecha")
     private Timestamp fecha;

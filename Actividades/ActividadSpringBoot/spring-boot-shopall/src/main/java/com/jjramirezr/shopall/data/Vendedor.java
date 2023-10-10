@@ -5,6 +5,7 @@ import lombok.Getter;
 import lombok.Setter;
 
 import java.sql.Timestamp;
+import java.util.List;
 
 @Getter
 @Setter
@@ -30,4 +31,10 @@ public class Vendedor {
 
     @Column(name = "RFC", nullable = false)
     private String rfc;
+
+    @OneToMany(mappedBy = "vendedor")
+    private List<NotificacionVendedor> notificaciones;
+
+    @OneToMany(mappedBy = "vendedor")
+    private List<Inventario> inventarios;
 }

@@ -4,6 +4,8 @@ import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
 
+import java.util.List;
+
 @Getter
 @Setter
 @Entity
@@ -14,8 +16,14 @@ public class Inventario {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "idInventario", nullable = false)
     private Integer id;
-    private Integer idVendedor;
-    private Integer idCategoria;
+
+    @ManyToOne
+    @JoinColumn(name = "idVendedor",nullable = false)
+    private Vendedor vendedor;
+
+    @ManyToOne
+    @JoinColumn(name = "idCategoria", nullable = false)
+    private CategoriaProducto categoria;
 
     @Column(name = "nombre", nullable = false)
     private String nombre;
@@ -31,4 +39,7 @@ public class Inventario {
 
     @Column(name = "PrecioUnitario", nullable = false)
     private Double precioUnitario;
+
+    @OneToMany(mappedBy = "inventario")
+    private List<Comentario> comentarios;
 }

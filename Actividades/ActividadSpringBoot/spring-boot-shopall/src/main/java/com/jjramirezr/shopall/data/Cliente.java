@@ -6,6 +6,8 @@ import lombok.Setter;
 import org.hibernate.annotations.CreationTimestamp;
 
 import java.sql.Timestamp;
+import java.util.List;
+
 @Getter
 @Setter
 @Entity
@@ -28,4 +30,12 @@ public class Cliente {
     @Column(name = "create_time", nullable = false)
     private Timestamp createTime;
 
+    @OneToMany(mappedBy = "cliente")
+    private List<NotificacionCliente> notificaciones;
+
+    @OneToMany(mappedBy = "cliente")
+    private List<Comentario> comentarios;
+
+    @OneToMany(mappedBy = "cliente")
+    private List<OrdenTotal> ordenTotalList;
 }

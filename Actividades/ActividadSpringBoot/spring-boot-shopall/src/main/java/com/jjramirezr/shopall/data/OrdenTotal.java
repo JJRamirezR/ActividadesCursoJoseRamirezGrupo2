@@ -5,6 +5,7 @@ import lombok.Getter;
 import lombok.Setter;
 
 import java.sql.Timestamp;
+import java.util.List;
 
 @Getter
 @Setter
@@ -16,7 +17,9 @@ public class OrdenTotal {
     @Column(name = "idOrdenTotal", nullable = false)
     private Integer id;
 
-    private Integer idCliente;
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "idCliente",nullable = false)
+    private Cliente cliente;
 
     @Column(name = "totalPrecio", nullable = false)
     private Double total;
@@ -26,5 +29,8 @@ public class OrdenTotal {
 
     @Column(name = "Estatus", nullable = false)
     private String estatus;
+
+    @OneToMany(mappedBy = "ordenTotal")
+    private List<OrdenDetalle> items;
 
 }

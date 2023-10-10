@@ -16,9 +16,13 @@ public class OrdenDetalle {
     @Column(name = "idOrden", nullable = false)
     private Integer id;
 
-    private Integer idOrdenTotal;
+    @ManyToOne(fetch = FetchType.LAZY, optional = false)
+    @JoinColumn(name = "idOrdenTotal",nullable = false)
+    private OrdenTotal ordenTotal;
 
-    private Integer idInventario;
+    @ManyToOne(fetch = FetchType.LAZY, optional = false)
+    @JoinColumn(name= "idInventario",nullable = false)
+    private Inventario producto; //Debería de ser inventario, pero opte por un nombre más representativo
 
     @Column(name = "Cantidad", nullable = false)
     private Integer cantidad;
