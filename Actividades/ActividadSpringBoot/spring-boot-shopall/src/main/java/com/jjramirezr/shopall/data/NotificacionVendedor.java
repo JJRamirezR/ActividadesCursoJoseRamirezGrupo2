@@ -9,14 +9,14 @@ import java.sql.Timestamp;
 @Getter
 @Setter
 @Entity
-@Table(name="Notificacion_Cliente")
-public class NotifiacionCliente {
+@Table(name="Notificacion_Vendedor")
+public class NotificacionVendedor {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "idNotificacion", nullable = false)
     private Integer id;
 
-    private Integer idCliente;
+    private Integer idVendedor;
 
     @Column(name = "Notificacion", nullable = false)
     private String Notificacion;
