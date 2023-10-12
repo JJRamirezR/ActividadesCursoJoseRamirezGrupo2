@@ -3,7 +3,6 @@ package com.jjramirezr.shopall.data;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
-import org.hibernate.annotations.CreationTimestamp;
 
 import java.sql.Timestamp;
 import java.util.List;
@@ -16,7 +15,7 @@ import java.util.List;
 public class Cliente {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "idCliente", nullable = false)
+    @Column(name = "idcliente", nullable = false)
     private Integer id;
 
     @Column(name = "nombre", nullable = false)
@@ -38,4 +37,16 @@ public class Cliente {
 
     @OneToMany(mappedBy = "cliente")
     private List<OrdenTotal> ordenTotalList;
+
+    @Override
+    public String toString() {
+        return "Cliente{" +
+                "id=" + id +
+                ", nombre='" + nombre + '\'' +
+                ", email='" + email + '\'' +
+                ", password='" + password + '\'' +
+                ", createTime=" + createTime +
+                ", notificaciones=" + notificaciones +
+                '}';
+    }
 }
