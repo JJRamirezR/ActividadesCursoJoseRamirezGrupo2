@@ -1,7 +1,7 @@
 package com.jjramirezr.shopall.controller;
 
 import com.jjramirezr.shopall.data.dto.ClienteDTO;
-import com.jjramirezr.shopall.data.dto.ClienteNotificacionDTO;
+import com.jjramirezr.shopall.data.dto.NotificacionListaDTO;
 import com.jjramirezr.shopall.service.ClienteService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -29,12 +29,12 @@ public class ClienteController {
     }
 
     @GetMapping("/{clienteId}/notificaciones")
-    public ClienteNotificacionDTO getNotificacions(@PathVariable int clienteId){
+    public NotificacionListaDTO getNotificacions(@PathVariable int clienteId){
         return clienteService.getNotificaciones(clienteId);
     }
 
     @GetMapping("/clientes")
-    public List<ClienteNotificacionDTO> prueba(){
+    public List<NotificacionListaDTO> prueba(){
         return clienteService.prueba();
     }
 }

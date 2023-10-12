@@ -3,8 +3,8 @@ package com.jjramirezr.shopall.service;
 import com.jjramirezr.shopall.data.Cliente;
 import com.jjramirezr.shopall.data.NotificacionCliente;
 import com.jjramirezr.shopall.data.dto.ClienteDTO;
-import com.jjramirezr.shopall.data.dto.ClienteNotificacionDTO;
-import com.jjramirezr.shopall.data.dto.NotificacionClienteDTO;
+import com.jjramirezr.shopall.data.dto.NotificacionListaDTO;
+import com.jjramirezr.shopall.data.dto.NotificacionDTO;
 import com.jjramirezr.shopall.repository.ClienteRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -39,18 +39,19 @@ public class ClienteService {
         return dto;
     }
 
-    public ClienteNotificacionDTO getNotificaciones(int clienteId){
+    public NotificacionListaDTO getNotificaciones(int clienteId){
         //Creando DTO que contiene nombre, email y lista de notificaciones
-        ClienteNotificacionDTO dto = new ClienteNotificacionDTO();
+        NotificacionListaDTO dto = new NotificacionListaDTO();
         //Colocando los datos del cliente
         Cliente cliente = clienteRepository.getReferenceById(clienteId);
         dto.setNombre(cliente.getNombre());
         dto.setEmail(cliente.getEmail());
         //Generando lista de notificaciones
-        List<NotificacionClienteDTO> notificaciones = new ArrayList<>();
+        List<NotificacionDTO> notificaciones = new ArrayList<>();
 
         for(NotificacionCliente notificacion: cliente.getNotificaciones()){
-            NotificacionClienteDTO notificacionDto = new NotificacionClienteDTO();
+            NotificacionDTO notificacionDto = new NotificacionDTO();
+            notificacionDto.setFecha(notificacion.getFecha());
             notificacionDto.setNotificacion(notificacion.getNotificacion());
             notificaciones.add(notificacionDto);
         }
@@ -59,20 +60,20 @@ public class ClienteService {
     }
 
     //Función de prueba para mostrar el usuario y sus notificaciones
-    public List<ClienteNotificacionDTO> prueba(){
-        List<ClienteNotificacionDTO> clientes = new ArrayList<>();
+    public List<NotificacionListaDTO> prueba(){
+        List<NotificacionListaDTO> clientes = new ArrayList<>();
         Iterable<Cliente> listaCliente = clienteRepository.findAll();
         for(Cliente cliente:listaCliente){
             //System.out.println(cliente);
             //System.out.println(cliente.getNotificaciones());
-            ClienteNotificacionDTO dto = new ClienteNotificacionDTO();
+            NotificacionListaDTO dto = new NotificacionListaDTO();
             //setear nombre e email para todas las instancias
             dto.setNombre(cliente.getNombre());
             dto.setEmail(cliente.getEmail());
             //crear y asignar lista de notificaciones
-            List<NotificacionClienteDTO> notificaciones = new ArrayList<>();
+            List<NotificacionDTO> notificaciones = new ArrayList<>();
             for(NotificacionCliente notificacion: cliente.getNotificaciones()){
-                NotificacionClienteDTO notDto = new NotificacionClienteDTO();
+                NotificacionDTO notDto = new NotificacionDTO();
                 System.out.println(notificacion.getNotificacion());
                 notDto.setNotificacion(notificacion.getNotificacion());
                 System.out.println("En dto: " + notDto.getNotificacion());

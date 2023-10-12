@@ -7,7 +7,7 @@ import java.sql.Timestamp;
 
 @Getter
 @Setter
-public class NotificacionClienteDTO {
+public class NotificacionDTO {
     //private ClienteDTO cliente;
     private String Notificacion;
     private Timestamp fecha;
