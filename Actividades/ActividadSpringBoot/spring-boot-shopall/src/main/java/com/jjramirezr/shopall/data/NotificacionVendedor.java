@@ -13,16 +13,16 @@ import java.sql.Timestamp;
 public class NotificacionVendedor {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "idNotificacion", nullable = false)
+    @Column(name = "idnotificacion", nullable = false)
     private Integer id;
 
     @ManyToOne(fetch = FetchType.LAZY, optional = false)
-    @JoinColumn(name = "idVendedor",nullable = false)
+    @JoinColumn(name = "idvendedor",nullable = false)
     private Vendedor vendedor;
 
-    @Column(name = "Notificacion", nullable = false)
-    private String Notificacion;
+    @Column(name = "notificacion", nullable = false)
+    private String notificacion;
 
-    @Column(name = "Fecha", nullable = false)
+    @Column(name = "fecha", nullable = false)
     private Timestamp fecha;
 }

@@ -9,6 +9,14 @@ import java.sql.Timestamp;
 @Setter
 public class NotificacionDTO {
     //private ClienteDTO cliente;
-    private String Notificacion;
+    private String notificacion;
     private Timestamp fecha;
+
+    public NotificacionDTO(){
+
+    }
+    public NotificacionDTO(String notificacion, Timestamp fecha) {
+        this.notificacion = notificacion;
+        this.fecha = fecha;
+    }
 }

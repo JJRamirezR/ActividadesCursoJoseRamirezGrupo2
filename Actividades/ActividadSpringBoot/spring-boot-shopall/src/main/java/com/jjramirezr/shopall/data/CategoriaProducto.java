@@ -4,24 +4,24 @@ import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
 
-import java.util.Set;
+import java.util.List;
 
 @Getter
 @Setter
 @Entity
-@Table(name = "CategoriaProducto")
+@Table(name = "categoria_producto")
 public class CategoriaProducto {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "idCategoria", nullable = false)
+    @Column(name = "idcategoria", nullable = false)
     private Integer id;
 
-    @Column(name = "nombreCategoria", nullable = false)
+    @Column(name = "nombrecategoria", nullable = false)
     private String nombre;
 
     @Column(name = "descripcion", nullable = false)
     private String descripcion;
 
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "categoria")
-    private Set<Inventario> productos;
+    private List<Inventario> productos;
 }

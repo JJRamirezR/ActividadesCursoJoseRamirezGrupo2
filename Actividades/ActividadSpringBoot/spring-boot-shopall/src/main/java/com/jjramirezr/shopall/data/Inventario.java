@@ -2,6 +2,7 @@ package com.jjramirezr.shopall.data;
 
 import jakarta.persistence.*;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import java.util.List;
@@ -9,20 +10,21 @@ import java.util.List;
 @Getter
 @Setter
 @Entity
+@NoArgsConstructor
 @Table(name="Inventario")
 public class Inventario {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "idInventario", nullable = false)
+    @Column(name = "idinventario", nullable = false)
     private Integer id;
 
     @ManyToOne
-    @JoinColumn(name = "idVendedor",nullable = false)
+    @JoinColumn(name = "idvendedor",nullable = false)
     private Vendedor vendedor;
 
     @ManyToOne
-    @JoinColumn(name = "idCategoria", nullable = false)
+    @JoinColumn(name = "idcategoria", nullable = false)
     private CategoriaProducto categoria;
 
     @Column(name = "nombre", nullable = false)
@@ -34,12 +36,30 @@ public class Inventario {
     @Column(name = "unidad", nullable = false)
     private String unidad;
 
-    @Column(name = "Stock", nullable = false)
+    @Column(name = "stock", nullable = false)
     private int stock;
 
-    @Column(name = "PrecioUnitario", nullable = false)
+    @Column(name = "preciounitario", nullable = false)
     private Double precioUnitario;
+
+    @OneToMany(mappedBy = "producto")
+    private List<Compra> productos;
 
     @OneToMany(mappedBy = "inventario")
     private List<Comentario> comentarios;
+
+    //Constructor para añadir producto
+
+
+    public Inventario(Vendedor vendedor, CategoriaProducto categoria,
+                      String nombre, String descripcion, String unidad,
+                      int stock, Double precioUnitario) {
+        this.vendedor = vendedor;
+        this.categoria = categoria;
+        this.nombre = nombre;
+        this.descripcion = descripcion;
+        this.unidad = unidad;
+        this.stock = stock;
+        this.precioUnitario = precioUnitario;
+    }
 }
