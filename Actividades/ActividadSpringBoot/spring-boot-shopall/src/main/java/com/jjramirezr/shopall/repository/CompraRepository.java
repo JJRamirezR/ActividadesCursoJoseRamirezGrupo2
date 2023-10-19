@@ -1,7 +1,7 @@
 package com.jjramirezr.shopall.repository;
 
-import com.jjramirezr.shopall.data.OrdenDetalle;
+import com.jjramirezr.shopall.data.Compra;
 import org.springframework.data.jpa.repository.JpaRepository;
 
-public interface OrdenDetalleRepository extends JpaRepository<OrdenDetalle,Integer> {
+public interface CompraRepository extends JpaRepository<Compra,Integer> {
 }
