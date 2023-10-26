@@ -4,6 +4,7 @@ import com.jjramirezr.shopall.data.dto.ClienteCreationDTO;
 import com.jjramirezr.shopall.data.dto.UsuarioDTO;
 import com.jjramirezr.shopall.data.dto.NotificacionListaDTO;
 import com.jjramirezr.shopall.service.ClienteService;
+import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -31,7 +32,7 @@ public class ClienteController {
         return clienteService.getNotificaciones(clienteId);
     }
     @PostMapping("/nuevo")
-    public ClienteCreationDTO addCliente(@RequestBody ClienteCreationDTO clienteDTO){
+    public ClienteCreationDTO addCliente(@Valid @RequestBody ClienteCreationDTO clienteDTO){
         return clienteService.saveCliente(clienteDTO);
     }
 
