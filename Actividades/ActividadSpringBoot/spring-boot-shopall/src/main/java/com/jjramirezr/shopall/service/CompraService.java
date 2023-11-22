@@ -10,6 +10,7 @@ import com.jjramirezr.shopall.repository.CompraRepository;
 import com.jjramirezr.shopall.repository.InventarioRepository;
 import com.jjramirezr.shopall.repository.OrdenRepository;
 import jakarta.transaction.Transactional;
+import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -46,7 +47,6 @@ public class CompraService {
         }
         orden.setTotal(total);
         ordenRepository.save(orden);
-
 
         return listaDTO;
     }
