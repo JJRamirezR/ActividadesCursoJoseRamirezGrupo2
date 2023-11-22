@@ -1,13 +1,12 @@
 package com.jjramirezr.shopall.controller;
 
-import com.jjramirezr.shopall.data.dto.ClienteDTO;
+import com.jjramirezr.shopall.data.dto.ClienteCreationDTO;
+import com.jjramirezr.shopall.data.dto.UsuarioDTO;
 import com.jjramirezr.shopall.data.dto.NotificacionListaDTO;
 import com.jjramirezr.shopall.service.ClienteService;
+import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -19,12 +18,12 @@ public class ClienteController {
     private ClienteService clienteService;
 
     @GetMapping("/lista")
-    public List<ClienteDTO> findAll(){
+    public List<UsuarioDTO> findAll(){
         return clienteService.findAll();
     }
 
     @GetMapping("/{clienteId}")
-    public ClienteDTO getCliente(@PathVariable int clienteId){
+    public UsuarioDTO getCliente(@PathVariable int clienteId){
         return clienteService.findById(clienteId);
     }
 
@@ -32,9 +31,9 @@ public class ClienteController {
     public NotificacionListaDTO getNotificacions(@PathVariable int clienteId){
         return clienteService.getNotificaciones(clienteId);
     }
-
-    @GetMapping("/clientes")
-    public List<NotificacionListaDTO> prueba(){
-        return clienteService.prueba();
+    @PostMapping("/nuevo")
+    public ClienteCreationDTO addCliente(@Valid @RequestBody ClienteCreationDTO clienteDTO){
+        return clienteService.saveCliente(clienteDTO);
     }
+
 }
