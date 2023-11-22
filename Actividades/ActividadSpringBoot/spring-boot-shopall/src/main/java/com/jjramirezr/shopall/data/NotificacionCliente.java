@@ -26,11 +26,4 @@ public class NotificacionCliente {
     @Column(name = "fecha", nullable = false)
     private Timestamp fecha;
 
-    @Override
-    public String toString() {
-        return "NotificacionCliente{" +
-                "id=" + id +
-                ", Notificacion='" + Notificacion + '\'' +
-                '}';
-    }
 }
